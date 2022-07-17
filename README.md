@@ -16,11 +16,11 @@ Projeto de chatbot utilizando opensource [Rasa](https://rasa.com/) para auxiliar
   ```bash
   source ./venv/bin/activate
   ```
-3 - Verifique versão do python. (Deverá ser a 3.8.XX)
+3 - Verifique versão do python. (Deverá ser a 3.8.xx, caso não seja crie o ambiente virtual nesta versão)
   ```bash
-  source ./venv/bin/activate
+  python --version
   ```
-4 - Instale o rasa
+4 - Instale o rasa (Versão 3.1)
   ```bash
   pip3 install rasa
   ```
@@ -41,9 +41,8 @@ Projeto de chatbot utilizando opensource [Rasa](https://rasa.com/) para auxiliar
 9 - Converse com o chatbot :)
 
 ## Canais
-- Telegram (TO:DO)
+- Telegram -> `ToDo`
 - Web (local)
-## Funções
-- Informações sobre a rodada
-- Lista de mais escalados para rodada
-
+## Funções 
+- Informações sobre a rodada -> `ToDo`
+- Lista de mais escalados para rodada -> `ToDo`
