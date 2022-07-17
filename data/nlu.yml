@@ -137,6 +137,12 @@ nlu:
     - você possui um nome?
     - como você se chama?
     - como posso te chamar?
+- intent: perguntar_rodada
+  examples: |
+    - perguntar_rodada
+    - quais são as informações da rodada?
+    - qual é a rodada atual?
+    - rodada
 - intent: reiniciar_dialogo
   examples: |
     - chamar assistente
