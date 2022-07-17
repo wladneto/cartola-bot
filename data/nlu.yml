@@ -1,0 +1,213 @@
+version: "3.1"
+
+nlu:
+- intent: acolher
+  examples: |
+    - boa noite
+    - boa tarde
+    - bom dia
+- intent: afirmar
+  examples: |
+    - Esta bem
+    - aham
+    - certo
+    - claro
+    - curti
+    - gostei
+    - isso
+    - já
+    - já sim
+    - ok
+    - positivo
+    - s
+    - sim
+    - uhum
+    - yes
+- intent: agradecer
+  examples: |
+    - Muito obrigado
+    - Obrigado
+    - Po, vlw
+    - muito obrigada
+    - obrigada
+    - valeu
+    - vlw
+    - vlw de mais por tudo
+- intent: desculpar
+  examples: |
+    - Desculpa
+    - Foi mal
+    - Malz
+    - Sinto muito
+    - foi malz
+    - foi mau
+    - me desculpe
+    - quero te pedir desculpas
+    - desculpa por isso
+    - mil desculpas
+- intent: despedir
+  examples: |
+    - Abraços
+    - Adeus
+    - Até mais
+    - Até mais tarde
+    - Beijo me liga
+    - Falous
+    - Flw
+    - Tchau
+    - ate
+    - até a proxima vez
+    - até a próxima
+    - bjo
+    - falou
+    - intéé
+    - ir embora
+    - sair
+    - saída
+    - um abraço
+    - xau
+    - adeus bot
+- intent: iniciar
+  examples: |
+    - iniciar conversa
+    - iniciar diálogo
+    - inicio
+    - ir ao inicio
+- intent: informar_entender_pergunta
+  examples: |
+    - Entender a pergunta
+    - compriender melhor minhas perguntas
+    - endender melhor
+    - melhorar a compreensão
+    - compreender melhor as perguntas
+    - entender mais perguntas
+    - entender a pergunta
+    - sacar melhor minhas perguntas
+    - tentar endender melhor os questionamentos
+- intent: informar_melhorar_resposta
+  examples: |
+    - Melhorar a resposta
+    - responder de uma forma mais amigavel
+    - respostas mais adequadas
+- intent: informar_responder_rapido
+  examples: |
+    - Responder + rápido
+    - gostaria de respostas mais rápidas
+    - o bot esta demorando muito para me responder
+    - responder mais rapido
+    - responder mais rapidamente
+    - queria respostas mais rápidas
+    - responder de forma mais ágil
+- intent: negar
+  examples: |
+    - Não curti
+    - Não gostei
+    - Não, valeu
+    - claro que não
+    - errado
+    - nem pensar
+    - não to afim
+    - nunca
+    - n
+    - nao
+    - negativo
+    - não
+    - não quero
+    - nn
+- intent: perguntar_humor
+  examples: |
+    - tudo bem?
+    - tudo bom?
+    - tudo certo?
+    - joia?
+    - firme?
+    - fmz?
+    - blz?
+    - beleza?
+- intent: perguntar_nome
+  examples: |
+    - me diz teu nome
+    - qual seu é seu nome?
+    - qual é o seu nome?
+    - que nome é o teu?
+    - seu nome
+    - você tem nome?
+    - quem é você?
+    - pode me dizer o teu nome?
+    - você possui um nome?
+    - como você se chama?
+    - como posso te chamar?
+- intent: reiniciar_dialogo
+  examples: |
+    - chamar assistente
+    - recomeçar a conversa
+    - reiniciar o dialogo
+    - reiniciar o diálogo
+    - quero reiniciar
+    - chamar assistente para reiniciar a conversa
+    - reiniciar
+    - voltar ao início
+    - voltar a conversa para o início
+    - recomeçar
+- intent: saudar
+  examples: |
+    - Alguém em casa?
+    - alguem ai ?
+    - blz
+    - cole fi
+    - cole jow
+    - colé meu
+    - dale
+    - eae
+    - ei
+    - hello
+    - hey
+    - hi
+    - oi
+    - ola
+    - olá
+    - olá meu bom
+    - opa
+    - qual é
+    - qualé mano
+    - tem alguem ae
+- intent: voltar_menu
+  examples: |
+    - começo
+    - me manda de volta
+    - menu
+    - quero ver o menu
+    - quero voltar
+    - quero voltar ao começo
+    - ver menu
+    - voltar
+    - voltar ao menu
+- intent: xingar
+  examples: |
+    - Vai pro carai
+    - anda logo buceta
+    - idiota
+    - mangolão
+    - vai pra puta que te pariu
+    - bot burro do caralho
+    - seu bot burro
+    - bot de bosta
+    - bot imecil
+    - bot inútil
+    - cala a boca
+    - caralho de bot
+    - fdp
+    - olho do cu
+    - puta de merda
+    - responde logo cacete
+    - robô burro
+    - robô idiota
+    - robô lixo
+    - tnc
+    - vai a merda
+    - vai se foder
+    - vtnc
+- intent: fora_do_escopo
+  examples: |
+    - qual time voce torce?
+    - voce pesca?

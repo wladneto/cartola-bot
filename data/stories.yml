@@ -1,0 +1,9 @@
+version: "3.1"
+
+stories:
+
+- story: Saudacao
+  steps:
+  - intent: saudar
+  - action: utter_saudar
+  - action: utter_menu

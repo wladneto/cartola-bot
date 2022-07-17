@@ -1,0 +1,67 @@
+version: "3.1"
+
+actions:
+  - action_default_fallback
+  - action_acolhimento
+
+#entities:
+#  - name
+
+intents:
+  - acolher
+  - afirmar
+  - agradecer
+  - desculpar
+  - despedir
+  - fora_de_escopo
+  - iniciar
+  - informar_entender_pergunta
+  - informar_melhorar_resposta
+  - informar_responder_rapido
+  - negar
+  - perguntar_humor
+  - perguntar_nome
+  - reiniciar_dialogo
+  - saudar
+  - voltar_menu
+  - xingar
+
+responses:
+
+  utter_agradecer:
+  - text: "Valeu parça! TMJ! 👊👊👊"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_menu:
+  - text: "Vamos começar parça!\nEscolha uma opção:"
+    buttons:
+    - title: "Mais escalados"
+      payload: "/mais_escalados"
+    - title: "Rodada"
+      payload: "/info_rodada"
+
+  utter_padrao:
+  - text: "🤔 eita! Sou um jovem robô e ainda não tenho essa resposta."
+
+  utter_saudar:
+  - text: "Olá. Sou o **cartola bot** e estou aqui para te ajudar a mitar."
+
+  utter_saudar_com_acolhimento:
+  - text: "{time_greeting} parça!\nFeliz por conversar com vc."
+
+  utter_saudar_novamente_com_acolhimento:
+  - text: "{time_greeting} parça!\nFeliz por conversar com vc novamente."
+
+
+
+slots:
+  saudar_novamente:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
