@@ -9,14 +9,15 @@ from typing import Any
 from typing import Dict
 from typing import List
 from typing import Text
- 
 from rasa_sdk import Action
 from rasa_sdk import Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.executor import CollectingDispatcher
+from actions.utils import confirmar_status_mercado, gerar_uuid
+import requests
 
- # Ação padrão saudar corretamente de acordo com o periodo do dia
+ # Ação para saudar corretamente de acordo com o periodo do dia
 class ActionAcolhimento(Action):
     def name(self) -> Text:
         return "action_acolhimento"
@@ -27,9 +28,8 @@ class ActionAcolhimento(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
- 
-        print({"action": self.name(), "sender_id": tracker.sender_id})
- 
+        requestId=gerar_uuid()
+        print({"requestId":requestId,"action": self.name(), "sender_id": tracker.sender_id, "status":"started"})
         circle_greeting = tracker.get_slot("saudar_novamente")
         date = datetime.now()
         hour = int(date.hour)
@@ -43,16 +43,18 @@ class ActionAcolhimento(Action):
             dispatcher.utter_message(response="utter_saudar_novamente_com_acolhimento",time_greeting=time_greeting)
         else:
             dispatcher.utter_message(response="utter_saudar_com_acolhimento",time_greeting=time_greeting)
-        print({"action": self.name(),
-                "sender_id": tracker.sender_id,
-                "result": {
-                    "circle_greeting": circle_greeting,
-                    "date": str(date),
-                    "hour": hour,
-                    "time_greeting": time_greeting,
-                },
-            }
+        print({
+            "requestId":requestId,
+            "action": self.name(),
+            "sender_id": tracker.sender_id,
+            "result": {
+                "circle_greeting": circle_greeting,
+                "date": str(date),
+                "hour": hour,
+                "time_greeting": time_greeting,
+            }}
         )
+        print({"requestId":requestId,"action": self.name(), "sender_id": tracker.sender_id, "status":"finished"})
         return [SlotSet("saudar_novamente", time_greeting)]
  
 # Ação padrão enviar o fallback do Rasa Core
@@ -66,7 +68,47 @@ class ActionDefaultFallback(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        print({"action": self.name(), "sender_id": tracker.sender_id})
+        requestId=gerar_uuid()
+        print({"requestId":requestId,"action": self.name(), "sender_id": tracker.sender_id, "status":"started"})
         dispatcher.utter_message(response="utter_padrao")
         dispatcher.utter_message(response="utter_menu")
+        print({"requestId":requestId,"action": self.name(), "sender_id": tracker.sender_id, "status":"finished"})
         return [UserUtteranceReverted()]
+
+# Ação para informar informações da rodada
+class ActionInformarRodada(Action):
+    def name(self) -> Text:
+        return "action_informar_rodada"
+ 
+    async def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+        ) -> List[Dict[Text, Any]]:
+        requestId=gerar_uuid()
+        print({"requestId":requestId,"action": self.name(), "sender_id": tracker.sender_id, "status":"started"})
+        api_address='https://api.cartola.globo.com/mercado/status'
+        try:
+            response = requests.get(api_address).json()
+            dispatcher.utter_message(response="utter_rodada",
+                rodada_atual=response['rodada_atual'],
+                status_mercado=confirmar_status_mercado(response['status_mercado']),
+                times_escalados=response['times_escalados']
+            )
+            print({
+                "requestId":requestId,
+                "action": self.name(),
+                "sender_id": tracker.sender_id,
+                "result": {
+                    "rodada_atual": response['rodada_atual'],
+                    "status_mercado": response['status_mercado'],
+                    "fechamento": response['fechamento'],
+                    "times_escalados": response['times_escalados']
+                }}
+            )
+        except:
+            print({"action": self.name(),"Error":"An exception occurred on request."})
+        
+        print({"requestId":requestId,"action": self.name(), "sender_id": tracker.sender_id, "status":"finished"})
+       
