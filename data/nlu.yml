@@ -124,6 +124,12 @@ nlu:
     - fmz?
     - blz?
     - beleza?
+- intent: perguntar_jogos
+  examples: |
+    - perguntar_jogos
+    - quais são os jogos da rodada?
+    - qual são os jogos?
+    - jogos
 - intent: perguntar_nome
   examples: |
     - me diz teu nome
