@@ -45,7 +45,7 @@ responses:
   - text: "🤔 eita! Sou um jovem robô e ainda não tenho essa resposta."
 
   utter_rodada:
-  - text: Estamos na rodada número **{rodada_atual}** do cartola.\nNo momento o mercado está **{status_mercado}** e temos escalados **{times_escalados}** times.
+  - text: Estamos na rodada número **{rodada_atual}** do cartola.\nNo momento o mercado está **{status_mercado}** e temos **{times_escalados}** de times escalados.
 
   utter_saudar:
   - text: "Olá. Sou o **cartola bot** e estou aqui para te ajudar a mitar."

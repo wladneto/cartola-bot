@@ -14,7 +14,7 @@ from rasa_sdk import Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.executor import CollectingDispatcher
-from actions.utils import confirmar_status_mercado, gerar_uuid
+from actions.utils import confirmar_status_mercado, gerar_uuid, arredondar_numero
 import requests
 
  # Ação para saudar corretamente de acordo com o periodo do dia
@@ -89,12 +89,15 @@ class ActionInformarRodada(Action):
         requestId=gerar_uuid()
         print({"requestId":requestId,"action": self.name(), "sender_id": tracker.sender_id, "status":"started"})
         api_address='https://api.cartola.globo.com/mercado/status'
+        response = requests.get(api_address).json()
+        times_escalados1 = arredondar_numero(response['times_escalados'])
         try:
             response = requests.get(api_address).json()
+            times_escalados = arredondar_numero(response['times_escalados'])
             dispatcher.utter_message(response="utter_rodada",
                 rodada_atual=response['rodada_atual'],
                 status_mercado=confirmar_status_mercado(response['status_mercado']),
-                times_escalados=response['times_escalados']
+                times_escalados=times_escalados
             )
             print({
                 "requestId":requestId,
@@ -104,7 +107,7 @@ class ActionInformarRodada(Action):
                     "rodada_atual": response['rodada_atual'],
                     "status_mercado": response['status_mercado'],
                     "fechamento": response['fechamento'],
-                    "times_escalados": response['times_escalados']
+                    "times_escalados": times_escalados
                 }}
             )
         except:
