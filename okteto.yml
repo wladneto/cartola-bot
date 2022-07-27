@@ -30,10 +30,6 @@ deploy:
     services:
       - bot
       - actions
-  endpoints:
-    - path: /
-      service: bot
-      port: 80
   
 
 # The dependencies section defines other git repositories to be deployed as part of your development environment
