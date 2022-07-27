@@ -45,11 +45,22 @@ deploy:
 # The dev section defines how to activate a development container
 # More info: https://www.okteto.com/docs/reference/manifest/#dev
 dev:
-  actions:
+  bot:
     command: bash
     workdir: /app
     securityContext:
-      runAsUser: 1001
+      runAsUser: 1001    
+    sync:
+      - .:/app
+    forward:
+      - 5005:5005
+    reverse:
+      - 9000:9000
+    volumes:
+      - /root/.cache/pip
+  actions:
+    command: bash
+    workdir: /app
     sync:
       - actions:/app
     forward:
@@ -58,13 +69,5 @@ dev:
       - 9000:9000
     volumes:
       - /root/.cache/pip
-  bot:
-    command: bash
-    workdir: /app
-    sync:
-      - .:/app
-    reverse:
-      - 9000:9000
-    volumes:
-      - /root/.cache/pip
+
 
