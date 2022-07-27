@@ -14,6 +14,8 @@ services:
     ports:
       - 5005:5005
     command: run --cors "*"
+    labels:
+      dev.okteto.com/auto-ingress: "true"
 # ================================= Actions RASA =================================
   actions:
     build:
