@@ -21,7 +21,6 @@ build:
   bot:
     context: .
     dockerfile: docker/rasa.Dockerfile
-    public: true
 
 # The deploy section defines how to deploy your development environment
 # More info: https://www.okteto.com/docs/reference/manifest/#deploy
