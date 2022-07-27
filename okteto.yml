@@ -9,18 +9,13 @@ build:
   #  - OKTETO_BUILD_ACTIONS_REPOSITORY: image repo
   #  - OKTETO_BUILD_ACTIONS_IMAGE: image name
   #  - OKTETO_BUILD_ACTIONS_TAG: image tag
-  actions:
-    context: .
-    dockerfile: docker/actions.Dockerfile
-
-  # You can use the following env vars to refer to this image in your deploy commands:
-  #  - OKTETO_BUILD_BOT_REGISTRY: image registry
-  #  - OKTETO_BUILD_BOT_REPOSITORY: image repo
-  #  - OKTETO_BUILD_BOT_IMAGE: image name
-  #  - OKTETO_BUILD_BOT_TAG: image tag
   bot:
     context: .
     dockerfile: docker/rasa.Dockerfile
+
+  actions:
+    context: .
+    dockerfile: docker/actions.Dockerfile  
 
 # The deploy section defines how to deploy your development environment
 # More info: https://www.okteto.com/docs/reference/manifest/#deploy
@@ -69,5 +64,3 @@ dev:
       - 9000:9000
     volumes:
       - /root/.cache/pip
-
-
