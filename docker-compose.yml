@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+# ================================= Bot RASA =====================================
+  bot:
+    build:
+      context: .
+      dockerfile: ./docker/rasa.Dockerfile
+    depends_on:
+      - actions
+    networks: 
+      - rasa-network
+    restart: unless-stopped
+    ports:
+      - 5005:5005
+    command: run --cors "*"
+# ================================= Actions RASA =================================
+  actions:
+    build:
+      context: .
+      dockerfile: ./docker/actions.Dockerfile
+    networks: 
+      - rasa-network
+    restart: unless-stopped
+    ports:
+      - 5055:5055
+# ================================= Network Docker ================================
+networks: 
+  rasa-network:
+    driver: bridge
