@@ -21,28 +21,51 @@ build:
   bot:
     context: .
     dockerfile: docker/rasa.Dockerfile
+    public: true
 
 # The deploy section defines how to deploy your development environment
 # More info: https://www.okteto.com/docs/reference/manifest/#deploy
 deploy:
   compose:
     file: docker-compose.yml
+    services:
+      - bot
+      - actions
+  endpoints:
+    - path: /
+      service: bot
+      port: 80
+  
 
 # The dependencies section defines other git repositories to be deployed as part of your development environment
 # More info: https://www.okteto.com/docs/reference/manifest/#dependencies
 # dependencies:
 #   - https://github.com/okteto/sample
+
+
 # The dev section defines how to activate a development container
 # More info: https://www.okteto.com/docs/reference/manifest/#dev
-# dev:
-#   sample:
-#     image: okteto/dev:latest
-#     command: bash
-#     workdir: /usr/src/app
-#     sync:
-#       - .:/usr/src/app
-#     environment:
-#       - name=$USER
-#     forward:
-#       - 8080:80
+dev:
+  actions:
+    command: bash
+    workdir: /app
+    securityContext:
+      runAsUser: 1001
+    sync:
+      - actions:/app
+    forward:
+      - 5055:5055
+    reverse:
+      - 9000:9000
+    volumes:
+      - /root/.cache/pip
+  bot:
+    command: bash
+    workdir: /app
+    sync:
+      - .:/app
+    reverse:
+      - 9000:9000
+    volumes:
+      - /root/.cache/pip
 
