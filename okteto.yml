@@ -55,10 +55,14 @@ dev:
     volumes:
       - /root/.cache/pip
   bot:
-    command: bash
+    command: run --cors "*"
     workdir: /app
+    securityContext:
+      runAsUser: 1001
     sync:
       - .:/app
+    forward:
+      - 5005:5005
     reverse:
       - 9000:9000
     volumes:
