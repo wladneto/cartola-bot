@@ -6,6 +6,10 @@ services:
     build:
       context: .
       dockerfile: ./docker/rasa.Dockerfile
+      args:
+        - CARTOLA_TELEGRAM_KEY=$CARTOLA_TELEGRAM_KEY
+        - CARTOLA_TELEGRAM_BOT=$CARTOLA_TELEGRAM_BOT
+        - CARTOLA_TELEGRAM_URL=$CARTOLA_TELEGRAM_URL
     depends_on:
       - actions
     networks: 
