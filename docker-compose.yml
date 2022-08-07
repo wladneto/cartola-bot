@@ -11,6 +11,10 @@ services:
     networks: 
       - rasa-network
     restart: unless-stopped
+    environment:
+      - CARTOLA_TELEGRAM_KEY=$CARTOLA_TELEGRAM_KEY
+      - CARTOLA_TELEGRAM_BOT=$CARTOLA_TELEGRAM_BOT
+      - CARTOLA_TELEGRAM_URL=$CARTOLA_TELEGRAM_URL
     ports:
       - 5005:5005
     command: run --cors "*"
